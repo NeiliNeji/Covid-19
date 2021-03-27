@@ -1,0 +1,56 @@
+{% extends 'mybase.html' %}
+
+{% block title %}
+WorldMap | TRACK COVID19
+{% endblock title%}
+{% block content %}
+<!--Main Body-->
+<div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="nav flex-column nav-pills col-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-Confirmed-tab" data-toggle="pill" href="#v-pills-Confirmed" role="tab"
+               aria-controls="v-pills-Confirmed" aria-selected="true">Active Cases</a>
+            <a class="nav-link" id="v-pills-activepercent-tab" data-toggle="pill" href="#v-pills-activepercent" role="tab"
+               aria-controls="v-pills-activepercent" aria-selected="false">Active Cases/ Population%</a>
+           
+        </div>
+        <div class="tab-content col-10 shadow-lg bg-white rounded" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-Confirmed" role="tabpanel"
+                 aria-labelledby="v-pills-Confirmed-tab">
+				 <div class="tab-pane fade show active" id="nav-corona" role="tabpanel" aria-labelledby="v-pills-Confirmed-tab">
+						<p class="text-center h4">
+                            This map below shows the active cases of covid-19<br/>
+                        </p>   
+                        <div style="width: 20%; display: inline-block;">
+							{{ div_active | safe }}
+							{{ script_active | safe }}
+						</div>
+                    
+                    
+                </div>
+
+            </div>
+			<div class="tab-pane fade" id="v-pills-activepercent" role="tabpanel"
+                 aria-labelledby="v-pills-activepercent-tab">
+				 <div class="tab-pane fade show active" id="nav-corona" role="tabpanel" aria-labelledby="v-pills-activepercent-tab">
+						<p class="text-center h4">
+                            This map below shows the percentage of covid-19 active cases  per population of each country<br/>
+                        </p> 
+                        <div style="width: 20%; display: inline-block;">
+							{{ div_active_percent | safe }}
+							{{ script_active_percent | safe }}
+						</div>
+                    
+                </div>
+
+            </div>
+
+            
+        </div>
+            
+    </div>
+
+</div>
+
+<!--/.Main Body-->
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'mybase.html' %}
+
+{% block title %}
+Home | TRACK COVID19
+{% endblock title%}
+{% block content %}
+<!--Main Body-->
+<div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="nav flex-column nav-pills col-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-introduction-tab" data-toggle="pill" href="#v-pills-introduction" role="tab"
+               aria-controls="v-pills-introduction" aria-selected="true">What is Covid-19</a>
+            <a class="nav-link" id="v-pills-advices-tab" data-toggle="pill" href="#v-pills-advices" role="tab"
+               aria-controls="v-pills-advices" aria-selected="false">Advices</a>
+        </div>
+        <div class="tab-content col-10 shadow-lg bg-white rounded" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-introduction" role="tabpanel"
+                 aria-labelledby="v-pills-introduction-tab">
+				 <div class="tab-pane fade show active" id="nav-corona" role="tabpanel" aria-labelledby="v-pills-introduction-tab">
+
+                        <img class="img-fluid" src="{{url_for('static', filename='corona1.png')}}" alt="Corona Virus"/>
+                        <p class="text-center h1">Covid-19</p>
+                        <p class="justify">
+                            Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus.<br/>
+                            Most people infected with the COVID-19 virus will experience mild to moderate respiratory illness and recover without requiring special treatment.
+                            Older people, and those with underlying medical problems like cardiovascular disease, diabetes, chronic respiratory disease, and cancer are more
+                            likely to develop serious illness.<br/>
+                            The best way to prevent and slow down transmission is be well informed about the COVID-19 virus, the disease it causes and how it spreads.
+                            Protect yourself and others from infection by washing your hands or using an alcohol based rub frequently and not touching your face.<br/>
+                            The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected person coughs or sneezes,
+                            so it’s important that you also practice respiratory etiquette (for example, by coughing into a flexed elbow).<br/>
+                            At this time, there are no specific vaccines or treatments for COVID-19. However, there are many ongoing clinical trials evaluating potential
+                            treatments. WHO will continue to provide updated information as soon as clinical findings become available.
+                        </p>
+                    
+                    
+                </div>
+
+            </div>
+			<div class="tab-pane fade" id="v-pills-advices" role="tabpanel"
+                 aria-labelledby="v-pills-advices-tab">
+				 <div class="tab-pane fade show active" id="nav-corona" role="tabpanel" aria-labelledby="v-pills-advices-tab">
+
+                        <img style="margin: 10px auto 20px; display: block;" src="{{url_for('static', filename='precautionss.jpg')}}" alt="Stay Home Stay Safe"/>
+                        <p class="text-center h1">Advices</p>
+                        To prevent infection and to slow transmission of COVID-19, do the following:<br/>
+                        <ul>
+                            <li>Wash your hands regularly with soap and water, or clean them with alcohol-based hand rub.</li>
+                            <li>Maintain at least 1 metre distance between you and people coughing or sneezing.</li>
+                            <li>Avoid touching your face.</li>
+                            <li>Cover your mouth and nose when coughing or sneezing.</li>
+                            <li>Stay home if you feel unwell.</li>
+                            <li>Refrain from smoking and other activities that weaken the lungs.</li>
+                            <li>Practice physical distancing by avoiding unnecessary travel and staying away from large groups of people.</li>
+                        </ul>
+                    
+                    
+                </div>
+
+            </div>
+
+            
+        </div>
+            
+     </div>
+
+</div>
+
+<!--/.Main Body-->
+{% endblock %}

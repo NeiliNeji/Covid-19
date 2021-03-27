@@ -1,0 +1,105 @@
+<!doctype html>
+{% extends 'mybase.html' %}
+
+{% block title %}
+Country Info | TRACK COVID19
+{% endblock title%}
+{% block content %}
+<!--Main Body-->
+<div class="container">
+	<div class="tab-content col-12 shadow-lg bg-white rounded" id="v-pills-tabContent">
+
+		<p class="text-center h1" style="color:green">{{ name }}</p>
+		<p class="text-center h4">&emsp;</p>
+		<p class="text-center h3">Active : {{ Active }}  &emsp;  Confirmed : {{ Confirmed }}  &emsp;  Deaths :{{ Deaths }}  &emsp;  Recovered : {{ Recovered }}</p>
+		<p class="text-center h4">&emsp;</p>
+	</div>
+	<div>
+	<p class="text-center h1">&emsp;</p>
+	</div>
+	<div class="tab-content col-12 shadow-lg bg-white rounded" id="v-pills-tabContent">
+
+						<p class="text-center h4">
+                            Active cases in {{ name }} for each day<br/>
+                        </p> 
+                            <div class="chart" id="active">
+                                <script>
+                                    var graphs={{active_line|safe}}
+                                    var layout = {width: 1050, height: 500, margin: {t: 50, b: 50, l:50, r:0}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('active',graphs,layout);
+                                </script>
+                            </div>
+	</div>
+		<div>
+	<p class="text-center h1">&emsp;</p>
+	</div>
+	<div class="tab-content col-12 shadow-lg bg-white rounded" id="v-pills-tabContent">
+
+						<p class="text-center h4">
+                            Confirmed cases in {{ name }} for each day<br/>
+                        </p>
+
+                            <div class="chart" id="confirmed">
+                                <script>
+                                    var graphs={{confirmed_line|safe}}
+                                    var layout = {width: 1050, height: 500, margin: {t: 50, b: 50, l:50, r:0}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('confirmed',graphs,layout);
+                                </script>
+                            </div>
+	</div>
+		<div>
+	<p class="text-center h1">&emsp;</p>
+	</div>
+	<div class="tab-content col-12 shadow-lg bg-white rounded" id="v-pills-tabContent">
+
+
+						<p class="text-center h4">
+                            Deaths cases in {{ name }} for each day<br/>
+                        </p>
+                            <div class="chart" id="deaths">
+                                <script>
+                                    var graphs={{deaths_line|safe}}
+                                    var layout = {width: 1050, height: 500, margin: {t: 50, b: 50, l:50, r:0}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('deaths',graphs,layout);
+                                </script>
+                            </div>
+ 	</div>
+		<div>
+	<p class="text-center h1">&emsp;</p>
+	</div>
+	<div class="tab-content col-12 shadow-lg bg-white rounded" id="v-pills-tabContent">
+	
+ 						<p class="text-center h4">
+                            Recovered cases in {{ name }} for each day<br/>
+                        </p>
+                            <div class="chart" id="recovered">
+                                <script>
+                                    var graphs={{recovered_line|safe}}
+                                    var layout = {width: 1050, height: 500, margin: {t: 50, b: 50, l:50, r:0}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('recovered',graphs,layout);
+                                </script>
+                            </div>
+ 	</div>
+		<div>
+	<p class="text-center h1">&emsp;</p>
+	</div>
+	<div class="tab-content col-12 shadow-lg bg-white rounded" id="v-pills-tabContent">
+
+						<p class="text-center h4">
+                            New cases in {{ name }} for each day<br/>
+                        </p>
+                            <div class="chart" id="new_cases">
+                                <script>
+                                    var graphs={{new_cases_line|safe}}
+                                    var layout = {width: 1050, height: 500, margin: {t: 50, b: 50, l:50, r:0}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('new_cases',graphs,layout);
+                                </script>
+                            </div>
+ 	</div>
+
+
+
+</div>
+<!--/.Main Body-->
+{% endblock %}
+

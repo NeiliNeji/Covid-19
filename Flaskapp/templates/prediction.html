@@ -1,0 +1,50 @@
+<!doctype html>
+{% extends 'mybase.html' %}
+
+{% block title %}
+Prediction | TRACK COVID19
+{% endblock title%}
+{% block content %}
+<!--Main Body-->
+<div class="container">
+
+	<div>
+	<p class="text-center h1">&emsp;</p>
+	</div>
+	<div class="tab-content col-12 shadow-lg bg-white rounded" id="v-pills-tabContent">
+
+						<p class="text-center h4">
+                            Active cases prediction in Tunisia<br/>
+                        </p> 
+                            <div class="chart" id="tunisia">
+                                <script>
+                                    var graphs={{Tunisia_Prediction|safe}}
+                                    var layout = {width: 1050, height: 500, margin: {t: 50, b: 50, l:50, r:0}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('tunisia',graphs,layout);
+                                </script>
+                            </div>
+	</div>
+		<div>
+	<p class="text-center h1">&emsp;</p>
+	</div>
+	<div class="tab-content col-12 shadow-lg bg-white rounded" id="v-pills-tabContent">
+
+						<p class="text-center h4">
+                            Active cases prediction in the world<br/>
+                        </p>
+
+                            <div class="chart" id="world">
+                                <script>
+                                    var graphs={{Global_Prediction|safe}}
+                                    var layout = {width: 1050, height: 500, margin: {t: 50, b: 50, l:50, r:0}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('world',graphs,layout);
+                                </script>
+                            </div>
+	</div>
+		
+
+
+
+</div>
+<!--/.Main Body-->
+{% endblock %}

@@ -1,0 +1,223 @@
+{% extends 'mybase.html' %}
+
+{% block title %}
+Stats | TRACK COVID19
+{% endblock title%}
+{% block content %}
+<!--Main Body-->
+<style>
+table.dataframe {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.dataframe td, table.dataframe th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table.dataframe tbody td {
+  font-size: 13px;
+}
+table.dataframe tr:nth-child(even) {
+  background: #D0E4F5;
+}
+table.dataframe thead {
+  background: #1C6EA4;
+  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  border-bottom: 2px solid #444444;
+}
+table.dataframe thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #00000;
+  border-left: 2px solid #D0E4F5;
+}
+table.dataframe thead th:first-child {
+  border-left: none;
+}
+
+table.dataframe tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #D0E4F5;
+  background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  border-top: 2px solid #444444;
+}
+table.dataframe tfoot td {
+  font-size: 14px;
+}
+table.dataframe tfoot .links {
+  text-align: right;
+}
+table.dataframe tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+</style>
+<div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="nav flex-column nav-pills col-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-globalgraphs-tab" data-toggle="pill" href="#v-pills-globalgraphs" role="tab"
+               aria-controls="v-pills-globalgraphs" aria-selected="true">Global Graphs</a>
+            <a class="nav-link" id="v-pills-topten-tab" data-toggle="pill" href="#v-pills-topten" role="tab"
+               aria-controls="v-pills-topten" aria-selected="false">Top 10 Affected Countries</a>
+            <a class="nav-link" id="v-pills-affectedcountries-tab" data-toggle="pill" href="#v-pills-affectedcountries" role="tab"
+               aria-controls="v-pills-affectedcountries" aria-selected="false">Affected Countries</a>
+        </div>
+        <div class="tab-content col-10 shadow-lg bg-white rounded" id="v-pills-tabContent">
+            
+			<div class="tab-pane fade show active" id="v-pills-globalgraphs" role="tabpanel" aria-labelledby="v-pills-globalgraphs-tab">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link" id="nav-lineplot-tab" data-toggle="tab" href="#nav-lineplot" role="tab"
+                           aria-controls="nav-lineplot" aria-selected="true">Line Plot</a>
+                        <a class="nav-item nav-link" id="nav-barplot-tab" data-toggle="tab" href="#nav-barplot" role="tab"
+                           aria-controls="nav-barplot" aria-selected="false">Bar Plot</a>
+                        <a class="nav-item nav-link" id="nav-piechart-tab" data-toggle="tab" href="#nav-piechart" role="tab"
+                           aria-controls="nav-piechart" aria-selected="false">Pie Chart</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-lineplot" role="tabpanel" aria-labelledby="nav-lineplot-tab">
+                            <div class="chart" id="lineplot">
+                                <script>
+                                    var graphs={{line|safe}}
+                                    var layout = {width: 900, height: 500, margin: {t: 50, b: 50, l:100, r:20}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('lineplot',graphs,layout);
+                                </script>
+                            </div>
+							<p class="text-center h4">
+                            This line plot gives information about the active , new , deaths, confirmed and recovered cases in the world for each day<br/>
+                        </p> 
+                    </div>
+                    <div class="tab-pane fade" id="nav-barplot" role="tabpanel" aria-labelledby="nav-barplot-tab">
+                        <div class="chart" id="barplot">
+                                <script>
+                                    var graphs={{plot|safe}}
+                                    var layout = {width: 900, height: 500, margin: {t: 50, b: 50, l:100, r:20}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('barplot',graphs,layout);
+                                </script>
+                            </div>
+							<p class="text-center h4">
+                            This bar plot gives information about the active , new , deaths, confirmed and recovered cases in the world for each day<br/>
+                        </p> 
+                    </div>
+                    <div class="tab-pane fade" id="nav-piechart" role="tabpanel" aria-labelledby="nav-piechart-tab">
+						<div class="chart" id="piechartplot">
+                                <script>
+                                    var graphs={{pie|safe}}
+                                    var layout = {width: 900, height: 500, margin: {t: 50, b: 50, l:100, r:20}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('piechartplot',graphs,layout);
+                                </script>
+                            </div>
+							<p class="text-center h4">
+                            This Pie chart gives information about the active, deaths, confirmed and recovered cases in the world for each day<br/>
+                        </p> 
+
+                    </div>
+                </div>
+            </div>
+
+            
+
+            
+			<div class="tab-pane fade" id="v-pills-topten" role="tabpanel" aria-labelledby="v-pills-topten-tab">
+			
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link" id="nav-confirmed-tab" data-toggle="tab" href="#nav-confirmed" role="tab"
+                           aria-controls="nav-confirmed" aria-selected="true">Confirmed</a>
+                        <a class="nav-item nav-link" id="nav-deaths-tab" data-toggle="tab" href="#nav-deaths" role="tab"
+                           aria-controls="nav-deaths" aria-selected="false">Deaths</a>
+                        <a class="nav-item nav-link" id="nav-recovered-tab" data-toggle="tab" href="#nav-recovered" role="tab"
+                           aria-controls="nav-recovered" aria-selected="false">Recovered</a>
+						<a class="nav-item nav-link" id="nav-active-tab" data-toggle="tab" href="#nav-active" role="tab"
+                           aria-controls="nav-active" aria-selected="false">Active</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-confirmed" role="tabpanel" aria-labelledby="nav-confirmed-tab">
+					
+                            <div class="chart" id="confirmed">
+                                <script>
+                                    var graphs={{topTenCases|safe}}
+                                    var layout = {width: 900, height: 500, margin: {t: 50, b: 50, l:100, r:20}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('confirmed',graphs,layout);
+                                </script>
+								
+                            </div>
+							<p class="text-center h4">
+                            Top 10 countries with the highest number of confirmed cases of covid-19
+                        </p> 
+							
+                    </div>
+                    <div class="tab-pane fade" id="nav-deaths" role="tabpanel" aria-labelledby="nav-deaths-tab">
+                        <div class="chart" id="deaths">
+                                <script>
+                                    var graphs={{topTenDeaths|safe}}
+                                    var layout = {width: 900, height: 500, margin: {t: 50, b: 50, l:100, r:20}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('deaths',graphs,layout);
+                                </script>
+                            </div>
+							<p class="text-center h4">
+                            Top 10 countries with the highest number of deaths of covid-19
+                        </p> 
+                    </div>
+                    <div class="tab-pane fade" id="nav-recovered" role="tabpanel" aria-labelledby="nav-recovered-tab">
+						<div class="chart" id="recovered">
+                                <script>
+                                    var graphs={{topTenRecovered|safe}}
+                                    var layout = {width: 900, height: 500, margin: {t: 50, b: 50, l:100, r:20}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('recovered',graphs,layout);
+                                </script>
+                            </div>
+							<p class="text-center h4">
+                            Top 10 countries with the highest number of recovered cases of covid-19
+							</p> 
+
+                            </div>
+
+					<div class="tab-pane fade" id="nav-active" role="tabpanel" aria-labelledby="nav-active-tab">
+						<div class="chart" id="active">
+                                <script>
+                                    var graphs={{topTenActive|safe}}
+                                    var layout = {width: 900, height: 500, margin: {t: 50, b: 50, l:100, r:20}, coloraxis: {showscale: false, colorscale: "Viridis"}};
+                                    Plotly.plot('active',graphs,layout);
+                                </script>
+                            </div>
+							<p class="text-center h4">
+                            Top 10 countries with the highest number of active cases of covid-19
+							</p> 
+                            </div>
+							
+
+                    </div>
+                </div>
+            
+
+            <div class="tab-pane fade" id="v-pills-affectedcountries" role="tabpanel" aria-labelledby="nv-pills-affectedcountries-tab">
+                        <div style="width:900px;" id="affectedcountries">
+						
+                            
+                                    {{table|safe}}
+                              
+                        </div>
+            </div>
+        </div>
+            
+    </div>
+
+</div>
+
+<!--/.Main Body-->
+{% endblock %}
